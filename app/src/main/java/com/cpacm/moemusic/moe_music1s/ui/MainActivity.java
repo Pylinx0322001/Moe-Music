@@ -1,4 +1,4 @@
-package com.cpacm.moemusic.moe_music1s;
+package com.cpacm.moemusic.moe_music1s.ui;
 
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.cpacm.moemusic.core.oauth.MoefouApi;
+import com.cpacm.moemusic.moe_music1s.R;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;
