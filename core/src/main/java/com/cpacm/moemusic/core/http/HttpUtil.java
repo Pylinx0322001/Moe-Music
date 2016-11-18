@@ -14,4 +14,6 @@ public class HttpUtil {
 
     public final static String BASE_URL="http://api.moefou.org/";
 
+    public final static String HITOKOTO_RAND="http://api.hitokoto.us/rand";
+
 }

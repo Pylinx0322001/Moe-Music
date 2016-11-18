@@ -10,9 +10,9 @@ import retrofit2.Retrofit;
 
 public class BaseAction {
 
-    protected Retrofit retrofit;
-
-    public BaseAction(){
-        this.retrofit= RetrofitManager.getInstance().getRetrofit();
-    }
+//    protected Retrofit retrofit;
+//
+//    public BaseAction(){
+//        this.retrofit= RetrofitManager.getInstance().getRetrofit();
+//    }
 }
