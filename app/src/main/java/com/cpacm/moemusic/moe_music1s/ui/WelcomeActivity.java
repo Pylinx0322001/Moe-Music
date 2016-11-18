@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import com.cpacm.moemusic.moe_music1s.R;
 import com.cpacm.moemusic.moe_music1s.ui.beats.BeatsActivity;
+import com.cpacm.moemusic.moe_music1s.ui.beats.LoginActivity;
 
 /**
  * Created by DIY on 2016/11/16.
@@ -63,7 +64,7 @@ public class WelcomeActivity extends AppCompatActivity {
     }
     public void startBeatsActivity(){
         Intent i=new Intent();
-        i.setClass(this, BeatsActivity.class);
+        i.setClass(this, LoginActivity.class);
         startActivity(i);
         finish();
     }
