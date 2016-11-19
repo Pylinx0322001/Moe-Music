@@ -12,8 +12,11 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 public class DrawableUtil {
     //可以一张图片实现多种状态显示此处展示了按下和默认时候的颜色
     public static Drawable tintDrawable(Drawable drawable, ColorStateList colors){
+        int r=drawable.getBounds().right;
+        int b=drawable.getBounds().bottom;
         final Drawable wrappedDrawable= DrawableCompat.wrap(drawable);
         DrawableCompat.setTintList(wrappedDrawable,colors);
+        wrappedDrawable.setBounds(0,0,r,b);
         return wrappedDrawable;
     }
 }
