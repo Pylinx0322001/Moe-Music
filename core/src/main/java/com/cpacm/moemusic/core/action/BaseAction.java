@@ -6,6 +6,7 @@ import retrofit2.Retrofit;
 
 /**
  * Created by DIY on 2016/11/16.
+ * @desciption: 基础action
  */
 
 public class BaseAction {

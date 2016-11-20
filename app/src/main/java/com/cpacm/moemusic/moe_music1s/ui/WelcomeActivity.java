@@ -7,17 +7,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
+import com.cpacm.moemusic.core.cache.SettingManager;
 import com.cpacm.moemusic.moe_music1s.R;
+import com.cpacm.moemusic.moe_music1s.ui.bests.BeatsActivity;
 import com.cpacm.moemusic.moe_music1s.ui.login.LoginActivity;
 
 /**
  * Created by DIY on 2016/11/16.
  */
 
-public class WelcomeActivity extends AppCompatActivity {
+public class WelcomeActivity extends AbstractAppActivity {
 
     private ImageView welcomeView;
 
@@ -52,7 +55,8 @@ public class WelcomeActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                startBeatsActivity();
+//                startBeatsActivity();
+                hasLogin();
             }
 
             @Override
@@ -61,10 +65,19 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
     }
-    public void startBeatsActivity(){
-        Intent i=new Intent();
-        i.setClass(this, LoginActivity.class);
-        startActivity(i);
-        finish();
+//    public void startBeatsActivity(){
+//        Intent i=new Intent();
+//        i.setClass(this, LoginActivity.class);
+//        startActivity(i);
+//        finish();
+//    }
+    public void hasLogin(){
+        if(TextUtils.isEmpty(SettingManager.getInstance()
+                .getSetting(SettingManager.ACCESS_TOKEN))){
+            startActivity(LoginActivity.class);
+        }else{
+            startActivity(BeatsActivity.class);
+            finish();
+        }
     }
 }

@@ -39,9 +39,18 @@ public class OauthDialog extends DialogFragment {
 //    }
 
     private final String JSAPP="oauth";
+    private boolean oauth=false;
 
     public static OauthDialog create(){
         OauthDialog dialog=new OauthDialog();
+        return dialog;
+    }
+
+    public static OauthDialog create(boolean oauth){
+        OauthDialog dialog=new OauthDialog();
+        Bundle b=new Bundle();
+        b.putBoolean("oauth",oauth);
+        dialog.setArguments(b);
         return dialog;
     }
 
@@ -63,10 +72,23 @@ public class OauthDialog extends DialogFragment {
                 .title(R.string.login)
                 .customView(customView,false)
                 .build();
+        if(getArguments() !=null){
+            oauth=getArguments().getBoolean("oauth");
+        }else{
+            oauth=false;
+        }
         webView=(WebView)customView.findViewById(R.id.webview);
         initWebView();
         progressBar=(ProgressBar)customView.findViewById(android.R.id.progress);
         setupProgress(progressBar);
+
+        if(oauth){
+            webView.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
+        }else{
+            webView.setVisibility(View.GONE);
+            progressBar.setVisibility(View.VISIBLE);
+        }
         return dialog;
     }
 
@@ -147,6 +169,10 @@ public class OauthDialog extends DialogFragment {
                                   String password){
         this.account=accout;
         this.password=password;
+        this.loginPresenter=loginPresenter;
+    }
+
+    public void setLoginPresenter(LoginPresenter loginPresenter){
         this.loginPresenter=loginPresenter;
     }
 

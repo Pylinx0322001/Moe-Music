@@ -1,4 +1,4 @@
-package com.cpacm.moemusic.moe_music1s.ui.login;
+package com.cpacm.moemusic.moe_music1s.ui.bests;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -14,8 +14,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.cpacm.moemusic.moe_music1s.R;
+import com.cpacm.moemusic.moe_music1s.ui.AbstractAppActivity;
 
-public class BeatsActivity extends AppCompatActivity
+public class BeatsActivity extends AbstractAppActivity
     implements NavigationView.OnNavigationItemSelectedListener{
 
     private DrawerLayout drawerLayout;
