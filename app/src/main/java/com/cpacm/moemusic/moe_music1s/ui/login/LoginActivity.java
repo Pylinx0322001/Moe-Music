@@ -1,26 +1,26 @@
-package com.cpacm.moemusic.moe_music1s.ui.beats;
+package com.cpacm.moemusic.moe_music1s.ui.login;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
 import com.cpacm.moemusic.core.http.HttpUtil;
+import com.cpacm.moemusic.core.mvp.presenters.LoginIView;
 import com.cpacm.moemusic.moe_music1s.R;
-import com.cpacm.moemusic.moe_music1s.ui.web.RegisterActivity;
-import com.cpacm.moemusic.moe_music1s.utils.DrawableUtil;
+import com.cpacm.moemusic.moe_music1s.presenter.LoginPresenter;
+import com.cpacm.moemusic.moe_music1s.ui.dialogs.OauthDialog;
 
 public class LoginActivity extends AppCompatActivity
-            implements View.OnClickListener{
+            implements View.OnClickListener,LoginIView{
 
     private TextInputLayout userLayout;
     private TextInputEditText userEditText;
@@ -28,6 +28,8 @@ public class LoginActivity extends AppCompatActivity
     private TextInputEditText pwdEditText;
     private Button loginBtn;
     private Toolbar toolbar;
+    private OauthDialog oauthDialog;
+    private LoginPresenter loginPresenter;
 
     //private TextInputLayout textInputLayout;
     //private TextInputEditText textInputEditText;
@@ -40,6 +42,7 @@ public class LoginActivity extends AppCompatActivity
 //        textInputLayout=(TextInputLayout)findViewById(R.id.user_editlayout);
 //        textInputEditText=(TextInputEditText)findViewById(R.id.user_edittext);
 //        textInputLayout.setHint(getString(R.string.app_name));
+        loginPresenter=new LoginPresenter(this);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //给左上角图标的左边加上一个返回的图标
@@ -84,6 +87,14 @@ public class LoginActivity extends AppCompatActivity
         if(TextUtils.isEmpty(user)) return;
         String pwd=pwdEditText.getText().toString();
         if(TextUtils.isEmpty(pwd)) return;
+        showOauthDialog(user,pwd);
+        loginPresenter.login();
+    }
+
+    private void showOauthDialog(String account,String password){
+        oauthDialog=OauthDialog.create();
+        oauthDialog.setLoginPresenter(loginPresenter,account,password);
+        oauthDialog.show(getFragmentManager(),getString(R.string.login));
     }
 
     //该方法返回包含控件左,上,右,下四个位置的Drawable的数组
@@ -115,5 +126,26 @@ public class LoginActivity extends AppCompatActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void LoginFailed(String s) {
+        Snackbar.make(getWindow().getDecorView(),s,Snackbar.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void LoginFailed() {
+
+    }
+
+    @Override
+    public void LoginSuccess() {
+
+    }
+
+    @Override
+    public void OauthRedirect(String url) {
+        oauthDialog.redirectUrlAndLogin(url);
     }
 }

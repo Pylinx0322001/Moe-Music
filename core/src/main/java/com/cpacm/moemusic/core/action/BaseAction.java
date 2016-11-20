@@ -15,4 +15,11 @@ public class BaseAction {
 //    public BaseAction(){
 //        this.retrofit= RetrofitManager.getInstance().getRetrofit();
 //    }
+    protected Retrofit retrofit;
+    protected String accessToken;
+
+    public BaseAction(){
+        this.retrofit=RetrofitManager.getInstance().getRetrofit();
+        this.accessToken=RetrofitManager.getInstance().getAccessToken();
+    }
 }

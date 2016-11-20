@@ -11,8 +11,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
 import com.cpacm.moemusic.moe_music1s.R;
-import com.cpacm.moemusic.moe_music1s.ui.beats.BeatsActivity;
-import com.cpacm.moemusic.moe_music1s.ui.beats.LoginActivity;
+import com.cpacm.moemusic.moe_music1s.ui.login.LoginActivity;
 
 /**
  * Created by DIY on 2016/11/16.

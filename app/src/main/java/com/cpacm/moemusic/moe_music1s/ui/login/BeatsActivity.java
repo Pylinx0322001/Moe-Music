@@ -1,4 +1,4 @@
-package com.cpacm.moemusic.moe_music1s.ui.beats;
+package com.cpacm.moemusic.moe_music1s.ui.login;
 
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
