@@ -22,6 +22,7 @@ public abstract class AbstractAppActivity extends AppCompatActivity {
 
     //snackbar的显示
     public void showSnackBar(String toast){
+        //getDecorView获得window中最顶层的view
         Snackbar.make(getWindow().getDecorView(),
                 toast,Snackbar.LENGTH_SHORT).show();
     }

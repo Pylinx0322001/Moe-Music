@@ -13,13 +13,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.cpacm.moemusic.core.bean.AccountBean;
+import com.cpacm.moemusic.core.mvp.views.BeatsIView;
 import com.cpacm.moemusic.moe_music1s.R;
 import com.cpacm.moemusic.moe_music1s.ui.AbstractAppActivity;
 
 public class BeatsActivity extends AbstractAppActivity
-    implements NavigationView.OnNavigationItemSelectedListener{
+    implements NavigationView.OnNavigationItemSelectedListener,BeatsIView{
 
     private DrawerLayout drawerLayout;
+    private BeatsPresenter beatsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +38,13 @@ public class BeatsActivity extends AbstractAppActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                beatsPresenter.getAccountDetail();
             }
         });
         initDrawer();
+        initData();
     }
 
         private void initDrawer() {
@@ -55,6 +60,10 @@ public class BeatsActivity extends AbstractAppActivity
         navigationView.setNavigationItemSelectedListener(this);
         }
 
+    private void initData(){
+        beatsPresenter=new BeatsPresenter(this);
+        beatsPresenter.getAccountDetail();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -71,6 +80,16 @@ public class BeatsActivity extends AbstractAppActivity
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void getUserFail(String msg) {
+        showSnackBar(msg);
+    }
+
+    @Override
+    public void setUserDetail(AccountBean accountBean) {
+        showSnackBar(accountBean.getUser_name());
     }
 
     @Override

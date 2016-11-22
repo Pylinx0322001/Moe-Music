@@ -2,7 +2,6 @@ package com.cpacm.moemusic.moe_music1s.ui.dialogs;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.InflateException;
 import android.view.LayoutInflater;
@@ -14,7 +13,7 @@ import android.widget.ProgressBar;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.cpacm.moemusic.moe_music1s.R;
-import com.cpacm.moemusic.moe_music1s.presenter.LoginPresenter;
+import com.cpacm.moemusic.moe_music1s.ui.login.LoginPresenter;
 import com.cpacm.moemusic.moe_music1s.ui.login.WebAppBridge;
 import com.cpacm.moemusic.moe_music1s.utils.FileManager;
 

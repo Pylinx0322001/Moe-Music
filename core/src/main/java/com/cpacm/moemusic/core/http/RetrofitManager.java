@@ -19,6 +19,8 @@ public class RetrofitManager {
     private static RetrofitManager ourInstance;
     private Retrofit retrofit;
     private String accessToken;
+    private String accessTokenSecret;
+    private String baseUrl=HttpUtil.BASE_URL;
 
     public static RetrofitManager getInstance(){
         if(ourInstance==null){
@@ -27,7 +29,9 @@ public class RetrofitManager {
         return ourInstance;
     }
 
-    private RetrofitManager(){
+    private RetrofitManager() {
+    }
+    public void build(){
         OkHttpClient.Builder httpClientBuilder=new OkHttpClient.Builder();
         //设置超时时间，单位为秒
         httpClientBuilder.connectTimeout(HttpUtil.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
@@ -36,11 +40,15 @@ public class RetrofitManager {
                 .client(httpClientBuilder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .baseUrl(HttpUtil.BASE_URL)
+                //.baseUrl(HttpUtil.BASE_URL)
+                .baseUrl(baseUrl)
                 .build();
     }
 
     public Retrofit getRetrofit(){
+        if(retrofit==null){
+            build();
+        }
         return retrofit;
     }
 
@@ -54,6 +62,26 @@ public class RetrofitManager {
                     .getSetting(SettingManager.ACCESS_TOKEN);
         }
         return accessToken;
+    }
+
+    public String getAccessTokenSecret(){
+        if(accessTokenSecret==null){
+            accessTokenSecret=SettingManager.getInstance()
+                    .getSetting(SettingManager.ACCESS_TOKEN);
+        }
+        return accessTokenSecret;
+    }
+
+    public String getBaseUrl(){
+        return baseUrl;
+    }
+
+    public void setBaseUrl(String baseUrl){
+        this.baseUrl=baseUrl;
+    }
+
+    public void setAccessTokenSecret(String accessTokenSecret){
+        this.accessTokenSecret=accessTokenSecret;
     }
 
     public void setAccessToken(String accessToken){

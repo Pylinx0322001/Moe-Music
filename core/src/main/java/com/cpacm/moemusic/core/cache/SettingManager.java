@@ -31,6 +31,7 @@ public class SettingManager {
     //app第一次启动
     public static final String FIRST_APP_START="first_app_start";
     public static final String ACCESS_TOKEN="access_token";
+    public static final String ACCESS_TOKEN_SECRET="access_token_secret";
 
     private SharedPreferences sharedPreferences;
     private Context context;
