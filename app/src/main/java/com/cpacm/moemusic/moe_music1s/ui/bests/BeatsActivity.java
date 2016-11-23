@@ -10,19 +10,27 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.cpacm.moemusic.core.bean.AccountBean;
 import com.cpacm.moemusic.core.mvp.views.BeatsIView;
+import com.cpacm.moemusic.moe_music1s.MoeApplication;
 import com.cpacm.moemusic.moe_music1s.R;
 import com.cpacm.moemusic.moe_music1s.ui.AbstractAppActivity;
+import com.cpacm.moemusic.moe_music1s.ui.widgets.CircleImageView;
 
 public class BeatsActivity extends AbstractAppActivity
     implements NavigationView.OnNavigationItemSelectedListener,BeatsIView{
 
     private DrawerLayout drawerLayout;
     private BeatsPresenter beatsPresenter;
+    private NavigationView navigationView;
+    private CircleImageView avatar,userImg;
+    private TextView nicknameTv,aboutTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +52,9 @@ public class BeatsActivity extends AbstractAppActivity
             }
         });
         initDrawer();
-        initData();
+        //initData();
+        getData();
+        initData(MoeApplication.getInstance().getAccountBean());
     }
 
         private void initDrawer() {
@@ -60,7 +70,28 @@ public class BeatsActivity extends AbstractAppActivity
         navigationView.setNavigationItemSelectedListener(this);
         }
 
-    private void initData(){
+    //private void initData(){
+    private void initData(AccountBean accountBean) {
+        Glide.with(this)
+                .load(accountBean.getUser_avatar().getMedium())
+                .into(userImg);
+        Glide.with(this)
+                .load(accountBean.getUser_avatar().getLarge())
+                .into(avatar);
+        String nickname=accountBean.getUser_nickname();
+        if(TextUtils.isEmpty(nickname)){
+            nickname=accountBean.getUser_name();
+        }
+        nicknameTv.setText(nickname);
+        if(TextUtils.isEmpty(accountBean.getAbout())){
+            aboutTv.setVisibility(View.GONE);
+        }else{
+            aboutTv.setVisibility(View.VISIBLE);
+            aboutTv.setText(accountBean.getAbout());
+        }
+    }
+
+    private void getData(){
         beatsPresenter=new BeatsPresenter(this);
         beatsPresenter.getAccountDetail();
     }

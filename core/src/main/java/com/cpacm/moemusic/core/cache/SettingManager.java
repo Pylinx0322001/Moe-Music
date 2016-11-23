@@ -32,6 +32,7 @@ public class SettingManager {
     public static final String FIRST_APP_START="first_app_start";
     public static final String ACCESS_TOKEN="access_token";
     public static final String ACCESS_TOKEN_SECRET="access_token_secret";
+    public static final String ACCOUNT_ID="account_id";
 
     private SharedPreferences sharedPreferences;
     private Context context;
@@ -62,10 +63,20 @@ public class SettingManager {
         return getSharedPreferences().getString(key,defaultValues);
     }
 
+    public void setSetting(String key,int flag){
+        SharedPreferences.Editor editor=getSharedPreferences().edit();
+        editor.putInt(key,flag);
+        editor.commit();
+    }
+
     public void setSetting(String key,boolean flag){
         SharedPreferences.Editor editor=getSharedPreferences().edit();
         editor.putBoolean(key,flag);
         editor.commit();
+    }
+
+    public Integer getSetting(String key,int defaultValue){
+        return getSharedPreferences().getInt(key,defaultValue);
     }
 
     public Boolean getSetting(String key,boolean defaultValue){

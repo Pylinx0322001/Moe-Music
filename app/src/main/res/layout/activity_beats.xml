@@ -31,13 +31,15 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginRight="16dp"
+                        android:layout_marginRight="@dimen/horizontal_margin"
                         android:src="@drawable/ic_drawer_home"/>
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:src="@mipmap/beats"/>
+
+                    <com.cpacm.moemusic.moe_music1s.ui.widgets.CircleImageView
+                        android:id="@+id/user_icon"
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
+                        android:layout_gravity="center"/>
+
                 </LinearLayout>
             </android.support.v7.widget.Toolbar>
         </android.support.design.widget.AppBarLayout>
@@ -56,15 +58,13 @@
 
     <android.support.design.widget.NavigationView
         android:id="@+id/navigation"
-        android:layout_height="match_parent"
         android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/home_drawer_header"
         app:menu="@menu/home_drawer_list">
+
     </android.support.design.widget.NavigationView>
-
-
-
 
 </android.support.v4.widget.DrawerLayout>

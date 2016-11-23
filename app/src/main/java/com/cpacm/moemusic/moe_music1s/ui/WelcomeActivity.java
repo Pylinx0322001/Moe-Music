@@ -72,8 +72,10 @@ public class WelcomeActivity extends AbstractAppActivity {
 //        finish();
 //    }
     public void hasLogin(){
-        if(TextUtils.isEmpty(SettingManager.getInstance()
-                .getSetting(SettingManager.ACCESS_TOKEN))){
+//        if(TextUtils.isEmpty(SettingManager.getInstance()
+//                .getSetting(SettingManager.ACCESS_TOKEN))){
+        if(SettingManager.getInstance()
+                .getSetting(SettingManager.ACCOUNT_ID,-1)==-1){
             startActivity(LoginActivity.class);
         }else{
             startActivity(BeatsActivity.class);

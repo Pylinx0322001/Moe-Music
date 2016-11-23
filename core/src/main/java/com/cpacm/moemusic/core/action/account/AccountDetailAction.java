@@ -26,13 +26,16 @@ public class AccountDetailAction extends BaseAction {
 
     public AccountDetailService detailService;
     private BeatsIPresenter beatsPresenter;
-    private Subscriber<ApiResponse<AccountData>> subscriber;
+    //private Subscriber<ApiResponse<AccountData>> subscriber;
 
-    public AccountDetailAction(BeatsIPresenter bestsPresenter){
+    public AccountDetailAction(BeatsIPresenter bestsPresenter) {
         super(HttpUtil.ACCOUNT_DETAIL);
-        this.beatsPresenter=bestsPresenter;
-        detailService=retrofit.create(AccountDetailService.class);
-        subscriber=new Subscriber<ApiResponse<AccountData>>(){
+        this.beatsPresenter = bestsPresenter;
+        detailService = retrofit.create(AccountDetailService.class);
+    }
+
+    public Subscriber<ApiResponse<AccountData>> getSubscriber(){
+        return new Subscriber<ApiResponse<AccountData>>(){
 
             @Override
             public void onCompleted() {
@@ -63,7 +66,8 @@ public class AccountDetailAction extends BaseAction {
         detailService.getAccount(authorization)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(subscriber);
+                //.subscribe(subscriber);
+                .subscribe(getSubscriber());
     }
 
     public void getAccount(int uid){
@@ -71,7 +75,8 @@ public class AccountDetailAction extends BaseAction {
         detailService.getAccount(authorization,uid)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(subscriber);
+                //.subscribe(subscriber);
+                .subscribe(getSubscriber());
     }
 
     public void getAccount(String username){
@@ -79,7 +84,8 @@ public class AccountDetailAction extends BaseAction {
         detailService.getAccount(authorization,username)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(subscriber);
+                //.subscribe(subscriber);
+                .subscribe(getSubscriber());
     }
 
     interface AccountDetailService{

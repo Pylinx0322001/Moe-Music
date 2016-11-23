@@ -15,3 +15,10 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+# glide
+-keepname com.cpacm.moemusic.moe_music1s.utils.MoeGlideModule
+-keepname public class * implements com.bumptech.glide.module.GlideModule
+-keepname public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
+      **[] $VALUES;
+      public *;
+      }

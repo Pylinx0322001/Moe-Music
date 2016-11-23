@@ -4,7 +4,6 @@ import android.util.Log;
 
 import com.cpacm.moemusic.core.mvp.presenters.LoginIPresenter;
 import com.cpacm.moemusic.core.oauth.MoefouApi;
-import com.cpacm.moemusic.core.utils.MoeLogger;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuth1RequestToken;

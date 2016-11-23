@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    compile project(path:':core')
+    compile project(path: ':core')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile 'junit:junit:4.12'
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
@@ -30,8 +30,9 @@ dependencies {
     compile files('D:/ASApplication/Moe-Music1s/core/libs/junit-4.8.2.jar')
     compile 'com.afollestad.material-dialogs:core:0.8.6.1'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.android.support:support-v4:24.0.0'
     compile 'com.android.support:appcompat-v7:24.2.1'
     compile 'com.android.support:design:25.0.0'
-
+    compile 'com.android.support:cardview-v7:24.2.1'
+    compile 'com.android.support:percent:24.2.1'
+    compile 'com.android.support:support-v4:25.0.0'
 }
