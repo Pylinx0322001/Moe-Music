@@ -60,8 +60,8 @@ public class AccountDao extends BaseDao {
     //return sql
     public static String createIndex(){
         StringBuilder sb=new StringBuilder();
-        sb.append("CREATE UNIQUE INDEX "+INDEX+" ON");
-        sb.append(TABLE+" ("+COLUMN_UID+" )");
+        sb.append("CREATE UNIQUE INDEX "+INDEX+" ON ");
+        sb.append(TABLE+" ( "+COLUMN_UID+" )");
         return sb.toString();
     }
 
@@ -70,7 +70,8 @@ public class AccountDao extends BaseDao {
         String[] selectionArgs=new String[]{uid+""};
 
         Cursor cursor=query(TABLE,null,selection,selectionArgs,null,null,null);
-        if(cursor.getColumnCount()==0){
+//        if(cursor.getColumnCount()==0){
+        if(cursor.getCount()==0){
             return null;
         }
         //将游标移动到第一条数据，使用前必须调用
