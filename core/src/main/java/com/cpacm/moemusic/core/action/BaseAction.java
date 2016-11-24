@@ -2,6 +2,7 @@ package com.cpacm.moemusic.core.action;
 
 import com.cpacm.moemusic.core.http.RetrofitManager;
 import com.cpacm.moemusic.core.oauth.MoefouApi;
+import com.cpacm.moemusic.core.utils.MoeLogger;
 import com.github.scribejava.core.builder.ServiceBuilder;
 import com.github.scribejava.core.model.OAuth1AccessToken;
 import com.github.scribejava.core.model.OAuthRequest;
@@ -40,6 +41,8 @@ public class BaseAction {
     }
 
     public String getOauthHeader(String url){
+        MoeLogger.d(accessToken);
+        MoeLogger.d(accessTokenSecret);
         OAuth1AccessToken oauthToken=
                 new OAuth1AccessToken(accessToken,accessTokenSecret);
         OAuth10aService service=new ServiceBuilder()

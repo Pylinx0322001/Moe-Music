@@ -73,6 +73,7 @@ public class BeatsActivity extends AbstractAppActivity
         viewPager=(ViewPager)findViewById(R.id.viewpager);
         beatsFragmentAdapter=new BeatsFragmentAdapter(getSupportFragmentManager());
         viewPager.setAdapter(beatsFragmentAdapter);
+        viewPager.setCurrentItem(1);
         tabLayout.setupWithViewPager(viewPager);
         initDrawer();
         //initData();
