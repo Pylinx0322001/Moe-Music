@@ -12,6 +12,7 @@ import com.cpacm.moemusic.moe_music1s.MoeApplication;
 import com.cpacm.moemusic.moe_music1s.R;
 import com.cpacm.moemusic.moe_music1s.ui.BaseFragment;
 import com.cpacm.moemusic.moe_music1s.ui.adapters.RecyclerViewListAdapter;
+import com.cpacm.moemusic.moe_music1s.ui.widgets.RefreshRecyclerView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,13 +23,17 @@ import java.util.List;
  * @desciption: 音乐界面
  */
 
-public class MusicFragment extends BaseFragment {
+public class MusicFragment extends BaseFragment implements RefreshRecyclerView
+.RefreshListener{
     public static final String TITLE= MoeApplication.getInstance()
             .getString(R.string.music);
 
-    private RecyclerView recyclerView;
+    //private RecyclerView recyclerView;
+    private RefreshRecyclerView refreshView;
     private static final String itemData="This is some dummy text for shown" +
             "in list view,every single word will be treated as an item";
+
+    private RecyclerViewListAdapter adapter;
 
     public static MusicFragment newInstance(){
         MusicFragment fragment=new MusicFragment();
@@ -46,20 +51,24 @@ public class MusicFragment extends BaseFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View parentView=inflater.inflate(R.layout.fragment_music,
-                container,false);
-        recyclerView=(RecyclerView)parentView
-                .findViewById(R.id.recycle_view);
+//        View parentView=inflater.inflate(R.layout.fragment_music,
+//                container,false);
+//        recyclerView=(RecyclerView)parentView
+//                .findViewById(R.id.recycle_view);
+        final View parentView=inflater.inflate(R.layout.fragment_music,container,false);
         String[] listItems=itemData.split(" ");
 
         List<String> list=new ArrayList<>();
         Collections.addAll(list,listItems);
-        LinearLayoutManager linearlayoutManager=
-                new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(linearlayoutManager);
-        recyclerView.setHasFixedSize(true);
-        RecyclerViewListAdapter adapter=new RecyclerViewListAdapter(list);
-        recyclerView.setAdapter(adapter);
+//        LinearLayoutManager linearlayoutManager=
+//                new LinearLayoutManager(getActivity());
+//        recyclerView.setLayoutManager(linearlayoutManager);
+//        recyclerView.setHasFixedSize(true);
+//        RecyclerViewListAdapter adapter=new RecyclerViewListAdapter(list);
+//        recyclerView.setAdapter(adapter);
+
+        adapter=new RecyclerViewListAdapter(list);
+        adapter.setTextListener(new RecyclerViewListAdapter.TextListener)
         return parentView;
     }
 }
