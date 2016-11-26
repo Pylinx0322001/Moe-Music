@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 
 import com.cpacm.moemusic.core.bean.AccountBean;
+import com.cpacm.moemusic.core.bean.CoverBean;
 
 /**
  * Created by DIY on 2016/11/22.
@@ -84,7 +85,9 @@ public class AccountDao extends BaseDao {
     public AccountBean getAccountBean(Cursor cursor) {
 
         AccountBean accountBean = new AccountBean();
-        AccountBean.UserAvatarBean userAvatarBean=accountBean.new UserAvatarBean();
+        //AccountBean.UserAvatarBean userAvatarBean=accountBean.new UserAvatarBean();
+        //AccountBean.userAvatarBean=accountBean.new CoverBean();
+        CoverBean userAvatarBean=new CoverBean();
         int uid = cursor.getInt(cursor.getColumnIndex(COLUMN_UID));
         String username = cursor.getString(cursor.getColumnIndex(COLUMN_USERNAME));
         String nickname = cursor.getString(cursor.getColumnIndex(COLUMN_NICKNAME));

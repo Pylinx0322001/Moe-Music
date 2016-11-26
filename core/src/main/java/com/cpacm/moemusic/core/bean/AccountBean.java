@@ -30,7 +30,8 @@ public class AccountBean {
     private long user_lastactivity;
     private String user_url;
     private String user_fm_url;
-    private UserAvatarBean user_avatar;
+    //private UserAvatarBean user_avatar;
+    private CoverBean user_avatar;
     private String groups;
     private String follower;
     private String following;
@@ -85,12 +86,19 @@ public class AccountBean {
         this.uid = uid;
     }
 
-    public UserAvatarBean getUser_avatar() {
+//    public UserAvatarBean getUser_avatar() {
+//        return user_avatar;
+//    }
+    public CoverBean getUser_avatar(){
         return user_avatar;
     }
 
-    public void setUser_avatar(UserAvatarBean user_avatar) {
-        this.user_avatar = user_avatar;
+//    public void setUser_avatar(UserAvatarBean user_avatar) {
+//        this.user_avatar = user_avatar;
+//    }
+
+    public void setUser_avatar(CoverBean user_avatar){
+        this.user_avatar=user_avatar;
     }
 
     public String getUser_fm_url() {
@@ -141,33 +149,33 @@ public class AccountBean {
         this.user_url = user_url;
     }
 
-    public class UserAvatarBean {
-        private String small;
-        private String medium;
-        private String large;
-
-        public String getLarge() {
-            return large;
-        }
-
-        public void setLarge(String large) {
-            this.large = large;
-        }
-
-        public String getMedium() {
-            return medium;
-        }
-
-        public void setMedium(String medium) {
-            this.medium = medium;
-        }
-
-        public String getSmall() {
-            return small;
-        }
-
-        public void setSmall(String small) {
-            this.small = small;
-        }
-    }
+//    public class UserAvatarBean {
+//        private String small;
+//        private String medium;
+//        private String large;
+//
+//        public String getLarge() {
+//            return large;
+//        }
+//
+//        public void setLarge(String large) {
+//            this.large = large;
+//        }
+//
+//        public String getMedium() {
+//            return medium;
+//        }
+//
+//        public void setMedium(String medium) {
+//            this.medium = medium;
+//        }
+//
+//        public String getSmall() {
+//            return small;
+//        }
+//
+//        public void setSmall(String small) {
+//            this.small = small;
+//        }
+//    }
 }

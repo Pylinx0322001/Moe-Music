@@ -3,6 +3,7 @@
     <color name="colorPrimary">#f50b84</color>
     <color name="colorPrimaryDark">#cf0970</color>
     <color name="colorAccent">#3F51B5</color>
+    <color name="background">#fffafafa</color>
     <color name="system_main_color">#f50b84</color>
 
     <!--常用颜色-->
