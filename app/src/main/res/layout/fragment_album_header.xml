@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <net.cpacm.library.SimpleSliderLayout
         android:id="@+id/simple_slider"
@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/horizontal_padding"
             android:padding="4dp"
             app:fillColor="?attr/colorPrimary"
             app:pageColor="@color/white"
