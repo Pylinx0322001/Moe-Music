@@ -1,4 +1,4 @@
-package com.cpacm.moemusic.moe_music1s.ui.music;
+package com.cpacm.moemusic.moe_music1s.music;
 
 import android.app.Service;
 import android.content.ComponentName;

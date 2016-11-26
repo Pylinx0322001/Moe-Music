@@ -20,5 +20,7 @@ public class MediaButtonReceiver extends BroadcastReceiver{
         if(event==null || event.getAction() !=KeyEvent.ACTION_UP){
             return;
         }
+
+        //do somethins
     }
 }
