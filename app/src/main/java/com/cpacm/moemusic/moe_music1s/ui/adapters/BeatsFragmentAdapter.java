@@ -4,10 +4,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.cpacm.moemusic.moe_music1s.ui.album.AlbumFragment;
 import com.cpacm.moemusic.moe_music1s.ui.anime.AnimeFragment;
 import com.cpacm.moemusic.moe_music1s.ui.area.AreaFragment;
 import com.cpacm.moemusic.moe_music1s.ui.comic.ComicFragment;
-import com.cpacm.moemusic.moe_music1s.ui.music.MusicFragment;
 import com.cpacm.moemusic.moe_music1s.ui.radio.RadioFragment;
 
 /**
@@ -20,15 +20,16 @@ public class BeatsFragmentAdapter extends FragmentPagerAdapter {
     private AnimeFragment animeFragment;
     private AreaFragment areaFragment;
     private ComicFragment comicFragment;
-    private MusicFragment musicFragment;
+    //private MusicFragment musicFragment;
+    private AlbumFragment albumFragment;
     private RadioFragment radioFragment;
 
     private final String[] titles;
 
     public BeatsFragmentAdapter(FragmentManager fm){
         super(fm);
-        titles=new String[]{MusicFragment.TITLE,AnimeFragment.TITLE,
-        ComicFragment.TITLE,RadioFragment.TITLE,AreaFragment.TITLE
+        titles=new String[]{AnimeFragment.TITLE, ComicFragment.TITLE,
+                RadioFragment.TITLE,AreaFragment.TITLE
         };
     }
 
@@ -36,22 +37,18 @@ public class BeatsFragmentAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch(position){
             case 0:
-                if(musicFragment==null)
-                    musicFragment=MusicFragment.newInstance();
-                return musicFragment;
-            case 1:
                 if(animeFragment==null)
                     animeFragment=AnimeFragment.newInstance();
                 return animeFragment;
+            case 1:
+                if(albumFragment==null)
+                    albumFragment=AlbumFragment.newInstance();
+                return albumFragment;
             case 2:
-                if(comicFragment==null)
-                    comicFragment=ComicFragment.newInstance();
-                return comicFragment;
-            case 3:
                 if(radioFragment==null)
                     radioFragment=RadioFragment.newInstance();
                 return radioFragment;
-            case 4:
+            case 3:
                 if(areaFragment==null)
                     areaFragment=AreaFragment.newInstance();
                 return areaFragment;

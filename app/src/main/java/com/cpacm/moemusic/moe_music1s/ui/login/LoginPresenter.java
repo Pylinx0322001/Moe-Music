@@ -5,6 +5,7 @@ import com.cpacm.moemusic.core.cache.SettingManager;
 import com.cpacm.moemusic.core.http.RetrofitManager;
 import com.cpacm.moemusic.core.mvp.presenters.LoginIPresenter;
 import com.cpacm.moemusic.core.mvp.presenters.LoginIView;
+import com.cpacm.moemusic.core.utils.MoeLogger;
 import com.github.scribejava.core.model.OAuth1AccessToken;
 
 /**
@@ -41,12 +42,14 @@ public class LoginPresenter implements LoginIPresenter {
 
     @Override
     public void LoginSuccess(OAuth1AccessToken accessToken) {
+        MoeLogger.d(accessToken.getToken());
+        MoeLogger.d(accessToken.getTokenSecret());
         SettingManager.getInstance().setSetting(SettingManager.ACCESS_TOKEN,
                 accessToken.getToken());
         SettingManager.getInstance().
                 setSetting(SettingManager.ACCESS_TOKEN_SECRET,
                         accessToken.getTokenSecret());
-        RetrofitManager.getInstance().build();
+        //RetrofitManager.getInstance().build();
         loginIView.LoginSuccess();
     }
 

@@ -17,8 +17,10 @@ import com.cpacm.moemusic.moe_music1s.ui.BaseFragment;
 
 public class ComicFragment extends BaseFragment {
 
-    public static final String TITLE= MoeApplication.getInstance()
-            .getString(R.string.comic);
+//    public static final String TITLE= MoeApplication.getInstance()
+//            .getString(R.string.comic);
+    public static final String TITLE=MoeApplication.getInstance()
+        .getString(R.string.album);
 
     public static ComicFragment newInstance(){
         ComicFragment fragment=new ComicFragment();

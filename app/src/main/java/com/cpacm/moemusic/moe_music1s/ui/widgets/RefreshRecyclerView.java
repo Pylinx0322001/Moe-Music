@@ -19,7 +19,8 @@ import com.cpacm.moemusic.moe_music1s.R;
  * @desciption: 可上拉下拉加载RecycleView
  */
 
-public class RefreshRecyclerView extends LinearLayout{
+public class RefreshRecyclerView extends LinearLayout implements
+    SwipeRefreshLayout.OnRefreshListener{
 
     private Context mContext;
     private SwipeRefreshLayout swipeRefreshLayout;
@@ -49,42 +50,53 @@ public class RefreshRecyclerView extends LinearLayout{
         initView(context);
     }
 
-    private void initView(Context context){
-        this.mContext=context;
-        isHeaderEnable=false;
-        View parentView= LayoutInflater.from(context).inflate(
-                R.layout.refresh_recycleview_layout,null,false);
-        swipeRefreshLayout=(SwipeRefreshLayout)parentView
+    private void initView(Context context) {
+        this.mContext = context;
+        isHeaderEnable = false;
+        View parentView = LayoutInflater.from(context).inflate(
+                R.layout.refresh_recycleview_layout, null, false);
+        swipeRefreshLayout = (SwipeRefreshLayout) parentView
                 .findViewById(R.id.swipe_layout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
-        recyclerView=(RecyclerView)parentView.findViewById(R.id.recycle_view);
+        recyclerView = (RecyclerView) parentView.findViewById(R.id.recycle_view);
         setLayoutManager(new LinearLayoutManager(context));
-        if(loadView==null){
-            loadView=LayoutInflater.from(context).inflate(R.layout.refresh_loadmore_layout,this,false);
+        if (loadView == null) {
+            loadView = LayoutInflater.from(context).inflate(R.layout.refresh_loadmore_layout, this, false);
         }
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-                if( null !=refreshListener && isLoadEnable && !isLoadingMore
-                        && dy>0){
-                    int lastVisiblePosition=getLastPosition();
-                    if(lastVisiblePosition+1==refreshRecycleAdapter.getItemCount()){
+                if (null != refreshListener && isLoadEnable && !isLoadingMore
+                        && dy > 0) {
+                    int lastVisiblePosition = getLastPosition();
+                    if (lastVisiblePosition + 1 == refreshRecycleAdapter.getItemCount()) {
                         setLoadingMore(true);
                         refreshListener.onLoadMore();
                     }
                 }
             }
         });
-    swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
+        swipeRefreshLayout.setOnRefreshListener(this);
+        addView(parentView);
+    }
+    //swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener(){
+
         @Override
         public void onRefresh() {
             if(null !=refreshListener)
                 refreshListener.onSwipeRefresh();
             }
+    public void startSwipeAfterViewCreate(){
+    swipeRefreshLayout.post(new Runnable(){
+            @Override
+            public void run(){
+                swipeRefreshLayout.setRefreshing(true);
+                onRefresh();
+            }
         });
-        addView(parentView);
+        //addView(parentView);
     }
 
     public void setAdapter(RecyclerView.Adapter adapter){

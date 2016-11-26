@@ -35,4 +35,5 @@ dependencies {
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'com.github.scribejava:scribejava-core:2.7.3'
     compile 'com.android.support:appcompat-v7:25.0.0'
+    compile 'net.cpacm.simpleslider:library:1.0.0'
 }
